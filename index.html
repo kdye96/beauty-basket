@@ -1,0 +1,62 @@
+<div class="page">
+  <div class="game-shell">
+
+    <!-- HUD (global overlay) -->
+    <div class="hud">
+      <div class="stat hearts">
+        <span id="heart-1">❤️</span><span id="heart-2">❤️</span><span id="heart-3">❤️</span>
+      </div>
+      <div class="stat">Score: <span id="score">0</span></div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="start-screen" class="screen">
+
+      <!-- Store Sign -->
+      <div class="store-sign marquee-box">
+        <h1 class="title-beauty">Beauty Basket</h1>
+        <p class="subtitle-tag">Catch the goodies to build the biggest basket!</p>
+      </div>
+
+      <!-- Start Button -->
+      <button id="start-btn" class="btn-start-shift">Start Shift</button>
+
+      <!-- Glass Doors -->
+      <div class="doors">
+        <div class="door left-door"></div>
+        <div class="door right-door"></div>
+      </div>
+
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="screen hidden">
+      <canvas id="gameCanvas" width="360" height="600"></canvas>
+    </div>
+
+    <!-- RETRY SCREEN -->
+    <div id="retry-screen" class="screen hidden">
+      <div class="panel">
+        <!-- Name Entry Popup -->
+<div id="name-entry" class="name-entry hidden">
+  <p class="name-entry-text">New High Score! Enter your name:</p>
+  <input id="player-name" type="text" maxlength="10" placeholder="Your Name">
+  <button id="save-name-btn" class="btn-kawaii">Save</button>
+</div>
+
+        <h2>Shift Over!</h2>
+        <p>Your score: <span id="final-score">0</span></p>
+
+        <!-- High score table -->
+        <div class="high-scores">
+          <h3>Top Scores</h3>
+          <ol id="score-list"></ol>
+        </div>
+
+        <button id="retry-btn" class="btn-kawaii">Retry</button>
+        <button id="home-btn" class="btn-kawaii alt">Home</button>
+      </div>
+    </div>
+
+  </div>
+</div>

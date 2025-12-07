@@ -1,0 +1,358 @@
+/* ================================
+   FONT IMPORTS
+================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Baloo+2:wght@700;800&display=swap');
+
+/* ================================
+   RESET + BASE
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff8f0;
+  font-family: "Fredoka", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page {
+  width: min(90vw, 420px);
+}
+
+/* Device frame */
+.game-shell {
+  width: 100%;
+  aspect-ratio: 9/16;
+  background: #000;
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 18px 40px rgba(120, 90, 75, 0.25);
+}
+
+/* ================================
+   SCREENS
+================================ */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Background Images */
+#start-screen {
+  background: url("https://i.postimg.cc/jd0xJx3P/Chat-GPT-Image-Nov-30-2025-10-48-07-PM.png") center/cover;
+}
+
+#game-screen,
+#retry-screen {
+  background: url("https://i.postimg.cc/gjypmRWr/Chat-GPT-Image-Nov-30-2025-10-56-12-PM.png") center/cover;
+}
+
+#retry-screen::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter:blur(6px);
+  z-index:0;
+}
+
+/* ================================
+   STORE SIGN (above doors)
+================================ */
+.store-sign {
+  position: absolute;
+  top: 18px;
+  width: 100%;
+  text-align: center;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.title-beauty {
+  font-family: 'Baloo 2', cursive;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #c87e85;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 10px rgba(240,200,205,0.95),
+    0 0 20px rgba(200,126,133,0.5);
+}
+
+.subtitle-tag {
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 6px;
+  color: #a85c66;
+  text-shadow: 0 0 6px rgba(255,255,255,0.4);
+}
+
+/* ================================
+   MARQUEE BOX — Rose Gold Frame
+================================ */
+.marquee-box {
+  padding: 12px 14px 18px;
+  border-radius: 22px;
+  width: 80%;
+  margin: 0 auto;
+
+  background: rgba(255,244,245,0.42);
+  backdrop-filter: blur(6px);
+
+  border: 3px solid #c87e85;
+  box-shadow:
+    0 0 8px rgba(200,126,133,0.45),
+    0 0 22px rgba(200,126,133,0.22),
+    inset 0 0 10px rgba(255,255,255,0.45);
+
+  position: relative;
+}
+
+/* ✨ Marquee Bulbs */
+.marquee-box::before,
+.marquee-box::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 6px;
+  border-radius: 8px;
+  background: radial-gradient(circle, #ffd6e2 25%, rgba(255,255,255,0) 60%);
+  animation: marqueeGlow 1.8s infinite alternate ease-in-out;
+}
+
+.marquee-box::before { top: -6px; }
+.marquee-box::after  { bottom: -6px; }
+
+@keyframes marqueeGlow {
+  0% { opacity: 0.55; }
+  100% { opacity: 0.95; }
+}
+
+/* ================================
+   START BUTTON
+================================ */
+.btn-start-shift {
+  position: absolute;
+  bottom: 100px;
+  padding: 18px 50px;
+  font-size: 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: "Fredoka", sans-serif;
+  color: #fff;
+  border: none;
+  z-index: 50;
+
+  background: linear-gradient(135deg, #eeb8c4, #c87e85);
+  box-shadow:
+    0 0 16px rgba(200,126,133,0.6),
+    0 0 32px rgba(255,184,200,0.32),
+    inset 0 0 14px rgba(255,255,255,0.5);
+
+  transition: transform .15s;
+}
+
+.btn-start-shift:hover { transform: translateY(-4px); }
+.btn-start-shift:active { transform: translateY(2px); }
+
+/* ================================
+   HUD (shown only during game)
+================================ */
+.hud {
+  position: absolute;
+  top: 12px;
+  width: 100%;
+  padding: 0 12px;
+  display: none;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;
+  pointer-events: none;
+  text-shadow: 0 0 8px #000;
+}
+
+.stat {
+  background: rgba(0,0,0,0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* ================================
+   GAME CANVAS
+================================ */
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  touch-action: none;
+}
+
+/* ================================
+   RETRY PANEL
+================================ */
+.panel {
+  text-align: center;
+  background: rgba(255,255,255,0.7);
+  padding: 24px 32px;
+  border-radius: 20px;
+  z-index: 20;
+}
+
+.btn-kawaii {
+  margin-top: 14px;
+  padding: 14px 34px;
+  font-size: 20px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff7fb5, #ff99c9);
+  color: #fff;
+  box-shadow: 0 6px 0 #c35b89;
+  transition: .12s;
+}
+
+.btn-kawaii:hover { transform: translateY(-3px); }
+.btn-kawaii:active { transform: translateY(2px); }
+
+/* ================================
+   DOORS — Glass + Rose Gold
+================================ */
+.doors {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.door {
+  flex: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,228,230,0.22),
+    rgba(255,228,230,0.10)
+  );
+  backdrop-filter: blur(4px) brightness(1.03);
+  transition: transform .9s ease-in-out;
+  position: relative;
+}
+
+/* Rose Gold Handles */
+.door::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 44px;
+  border-radius: 5px;
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom, #e7c3a8, #b58862);
+  box-shadow: 0 0 6px rgba(218,185,143,0.7);
+}
+
+.left-door::after { right: 14px; }
+.right-door::after { left: 14px; }
+
+/* Open Animation */
+.doors.open .left-door  { transform: translateX(-100%); }
+.doors.open .right-door { transform: translateX(100%); }
+
+/* ================================
+   HIGH SCORE BOARD
+================================ */
+.high-scores {
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  color: #7a3a52;
+}
+
+.high-scores h3 {
+  font-size: 18px;
+  color: #a85c66;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.high-scores ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.high-scores li {
+  font-size: 16px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.4);
+  border-radius: 12px;
+  margin: 4px 20px;
+  padding: 6px;
+  color: #c87e85;
+  text-shadow: 0 0 6px rgba(255,255,255,0.45);
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.4);
+}
+
+/* ================================
+   Name Entry Popup
+================================ */
+.name-entry {
+  background: rgba(255,255,255,0.85);
+  padding: 18px 24px;
+  border-radius: 18px;
+  text-align: center;
+  margin-top: 12px;
+  color: #a85c66;
+  animation: popup .35s ease-out;
+}
+
+.name-entry-text {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+
+#player-name {
+  width: 80%;
+  padding: 8px 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 2px solid #c87e85;
+  outline: none;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: "Fredoka", sans-serif;
+}
+
+@keyframes popup {
+  0% { transform: scale(0.5); opacity:0; }
+  100% { transform: scale(1); opacity:1; }
+}
+
+
+/* ============== SIMPLE MOBILE TWEAK ============== */
+@media (max-height: 700px) {
+  .store-sign { top: 8px; }
+  .btn-start-shift { bottom: 70px; transform: scale(.92); }
+}
