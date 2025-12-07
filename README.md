@@ -1,4 +1,4 @@
-# Beauty Boss Game
+# Beauty Boss Minigame
 
 A Pen created on CodePen.
 
