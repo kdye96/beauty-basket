@@ -1,89 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Beauty Basket</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beauty Basket</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="./style.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="./style.css">
 
-    <!-- PWA Setup -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#e7c2d0">
+  <!-- PWA Setup -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#e7c2d0">
 </head>
 
-    
-  <body>
+<body>
   <div class="page">
-  <div class="game-shell">
+    <div class="game-shell">
 
-    <!-- HUD (global overlay) -->
-    <div class="hud">
-      <div class="stat hearts">
-        <span id="heart-1">❤️</span><span id="heart-2">❤️</span><span id="heart-3">❤️</span>
-      </div>
-      <div class="stat">Score: <span id="score">0</span></div>
-    </div>
-
-    <!-- START SCREEN -->
-    <div id="start-screen" class="screen">
-
-      <!-- Store Sign -->
-      <div class="store-sign marquee-box">
-        <h1 class="title-beauty">Beauty Basket</h1>
-        <p class="subtitle-tag">Catch the goodies to build the biggest basket!</p>
+      <!-- HUD (global overlay) -->
+      <div class="hud">
+        <div class="stat hearts">
+          <span id="heart-1">❤️</span><span id="heart-2">❤️</span><span id="heart-3">❤️</span>
+        </div>
+        <div class="stat">Score: <span id="score">0</span></div>
       </div>
 
-      <!-- Start Button -->
-      <button id="start-btn" class="btn-start-shift">Start Shift</button>
+      <!-- START SCREEN -->
+      <div id="start-screen" class="screen">
 
-      <!-- Glass Doors -->
-      <div class="doors">
-        <div class="door left-door"></div>
-        <div class="door right-door"></div>
-      </div>
-
-    </div>
-
-    <!-- GAME SCREEN -->
-    <div id="game-screen" class="screen hidden">
-      <canvas id="gameCanvas" width="360" height="600"></canvas>
-    </div>
-
-    <!-- RETRY SCREEN -->
-    <div id="retry-screen" class="screen hidden">
-      <div class="panel">
-        <!-- Name Entry Popup -->
-<div id="name-entry" class="name-entry hidden">
-  <p class="name-entry-text">New High Score! Enter your name:</p>
-  <input id="player-name" type="text" maxlength="10" placeholder="Your Name">
-  <button id="save-name-btn" class="btn-kawaii">Save</button>
-</div>
-
-        <h2>Shift Over!</h2>
-        <p>Your score: <span id="final-score">0</span></p>
-
-        <!-- High score table -->
-        <div class="high-scores">
-          <h3>Top Scores</h3>
-          <ol id="score-list"></ol>
+        <!-- Store Sign -->
+        <div class="store-sign marquee-box">
+          <h1 class="title-beauty">Beauty Basket</h1>
+          <p class="subtitle-tag">Catch the goodies to build the biggest basket!</p>
         </div>
 
-        <button id="retry-btn" class="btn-kawaii">Retry</button>
-        <button id="home-btn" class="btn-kawaii alt">Home</button>
+        <!-- Start Button -->
+        <button id="start-btn" class="btn-start-shift">Start Shift</button>
+
+        <!-- Glass Doors -->
+        <div class="doors">
+          <div class="door left-door"></div>
+          <div class="door right-door"></div>
+        </div>
+
       </div>
+
+      <!-- GAME SCREEN -->
+      <div id="game-screen" class="screen hidden">
+        <canvas id="gameCanvas" width="360" height="600"></canvas>
+      </div>
+
+      <!-- RETRY SCREEN -->
+      <div id="retry-screen" class="screen hidden">
+        <div class="panel">
+
+          <!-- Name Entry Popup -->
+          <div id="name-entry" class="name-entry hidden">
+            <p class="name-entry-text">New High Score! Enter your name:</p>
+            <input id="player-name" type="text" maxlength="10" placeholder="Your Name">
+            <button id="save-name-btn" class="btn-kawaii">Save</button>
+          </div>
+
+          <h2>Shift Over!</h2>
+          <p>Your score: <span id="final-score">0</span></p>
+
+          <!-- High score table -->
+          <div class="high-scores">
+            <h3>Top Scores</h3>
+            <ol id="score-list"></ol>
+          </div>
+
+          <button id="retry-btn" class="btn-kawaii">Retry</button>
+          <button id="home-btn" class="btn-kawaii alt">Home</button>
+        </div>
+      </div>
+
     </div>
-
   </div>
-</div>
-    <script src='https://unpkg.com/react@18/umd/react.development.js'></script>
-<script src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
-<script src='https://unpkg.com/kaboom/dist/kaboom.js'></script><script  src="./script.js"></script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/beauty-basket/service-worker.js");
-}
 
-  </body>
-  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
+  <script src="./script.js"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/beauty-basket/service-worker.js");
+    }
+  </script>
+
+</body>
+
 </html>
