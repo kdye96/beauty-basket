@@ -80,6 +80,9 @@
     <script src='https://unpkg.com/react@18/umd/react.development.js'></script>
 <script src='https://unpkg.com/react-dom@18/umd/react-dom.development.js'></script>
 <script src='https://unpkg.com/kaboom/dist/kaboom.js'></script><script  src="./script.js"></script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/beauty-basket/service-worker.js");
+}
 
   </body>
   
